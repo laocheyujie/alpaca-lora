@@ -45,20 +45,20 @@ We can also tweak our hyperparameters:
 
 ```bash
 python finetune.py \
-    --base_model 'decapoda-research/llama-7b-hf' \
-    --data_path 'yahma/alpaca-cleaned' \
-    --output_dir './lora-alpaca' \
-    --batch_size 128 \
-    --micro_batch_size 4 \
-    --num_epochs 3 \
-    --learning_rate 1e-4 \
-    --cutoff_len 512 \
-    --val_set_size 2000 \
-    --lora_r 8 \
-    --lora_alpha 16 \
-    --lora_dropout 0.05 \
-    --lora_target_modules '[q_proj,v_proj]' \
-    --train_on_inputs \
+    --base_model 'decapoda-research/llama-7b-hf' \  # 选择预训练的基础模型
+    --data_path 'yahma/alpaca-cleaned' \            # 用于微调的数据集路径
+    --output_dir './lora-alpaca' \                  # 微调后模型的输出目录
+    --batch_size 128 \                              # 设置每个批次的样本数量
+    --micro_batch_size 4 \                          # 设置每个小批次的样本数量
+    --num_epochs 3 \                                # 设置训练的轮次（epoch）
+    --learning_rate 1e-4 \                          # 设置学习速率
+    --cutoff_len 512 \                              # 设置截断长度
+    --val_set_size 2000 \                           # 设置验证集的大小
+    --lora_r 8 \                                    # 设置LoRA方法中的秩
+    --lora_alpha 16 \                               # 设置LoRA方法中的alpha值
+    --lora_dropout 0.05 \                           # 设置LoRA方法中的dropout率
+    --lora_target_modules '[q_proj,v_proj]' \       # 设置使用LoRA进行微调的模型模块
+    --train_on_inputs                               # 指示模型在训练时使用输入文本
     --group_by_length
 ```
 
